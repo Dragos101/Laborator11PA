@@ -1,6 +1,6 @@
 # Laborator11PA
 
-Baciu Dragos & Cezar Lupu - 2E4
+Baciu Dragos & Lupu Cezar - 2E4
 -
 
 Compulsory
