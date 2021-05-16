@@ -1,10 +1,8 @@
 package ro.info.uaic.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.info.uaic.Database.Database;
 import ro.info.uaic.entity.PersonEnt;
-import ro.info.uaic.repo.PersonRepository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,9 +13,6 @@ import java.util.List;
 
 @Service
 public class PersonService {
-
-    @Autowired
-    PersonRepository personRepository;
 
     public List<PersonEnt> getAllPersons(){
         List<PersonEnt> persons = new ArrayList<>();
