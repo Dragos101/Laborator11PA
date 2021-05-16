@@ -22,15 +22,15 @@ public class PersonController {
         personService.deletePerson(personID);
     }
 
-    @PostMapping("persons")
+    @PostMapping("/persons")
     private String addPlayer(@RequestBody PersonEnt personEnt){
         personService.ADD(personEnt);
         return personEnt.getId();
     }
 
-    @PutMapping("/persons/{personID}")
-    private void update(@RequestBody PersonEnt person, @PathVariable("personID") String personID){
-        personService.update(person, personID);
+    @PutMapping("/persons")
+    private void update(@RequestBody PersonEnt person){
+        personService.update(person);
     }
 
 }

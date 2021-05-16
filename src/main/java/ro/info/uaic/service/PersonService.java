@@ -20,23 +20,22 @@ public class PersonService {
     PersonRepository personRepository;
 
     public List<PersonEnt> getAllPersons(){
-        List<PersonEnt> players = new ArrayList<>();
+        List<PersonEnt> persons = new ArrayList<>();
 
         try {
             Statement statement = (Statement) Database.getConnection().createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM PERSON");
-            PersonEnt player;
+            PersonEnt personEnt;
             while(rs.next()) {
-                player = new PersonEnt(rs.getString(1), rs.getString(2));
-                players.add(player);
+                personEnt = new PersonEnt(rs.getString(1), rs.getString(2));
+                persons.add(personEnt);
             }
             statement.close();
             rs.close();
         } catch(SQLException e) {
             e.printStackTrace();
         }
-
-        return players;
+        return persons;
     }
 
     public void ADD(PersonEnt personEnt)
@@ -44,8 +43,9 @@ public class PersonService {
         try {
             PreparedStatement preparedStatement = Database.getConnection()
                     .prepareStatement("INSERT INTO PERSON VALUES(?, ?)");
-            preparedStatement.setString(1, "10");
+            preparedStatement.setString(1, personEnt.getId());
             preparedStatement.setString(2, personEnt.getNume());
+            if(preparedStatement.executeUpdate() != 0) System.out.println("ADAUGAT");
             preparedStatement.close();
         } catch(SQLException e) {
             e.printStackTrace();
@@ -57,19 +57,21 @@ public class PersonService {
             PreparedStatement preparedStatement = Database.getConnection()
                     .prepareStatement("DELETE FROM PERSON WHERE id = ?");
             preparedStatement.setString(1, id);
+            if(preparedStatement.executeUpdate() != 0) System.out.println("Sters");
             preparedStatement.close();
         } catch(SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void update(PersonEnt personEnt, String playerId)
+    public void update(PersonEnt personEnt)
     {
         try {
             PreparedStatement preparedStatement = Database.getConnection()
-                    .prepareStatement("UPDATE PERSON SET name = ? WHERE id = ?");
+                    .prepareStatement("UPDATE PERSON SET nume = ? WHERE id = ?");
             preparedStatement.setString(1, personEnt.getNume());
-            preparedStatement.setString(2, playerId);
+            preparedStatement.setString(2, personEnt.getId());
+            if(preparedStatement.executeUpdate() != 0) System.out.println("Updatat");
             preparedStatement.close();
         } catch(SQLException e) {
             e.printStackTrace();
