@@ -30,7 +30,7 @@ Compulsory
       </li>
     </ul>
     <li>
-      Am testat programul prin intermediul aplicatiei Postman
+      Am testat programul prin intermediul aplicatiei Postman.
   </li>
   </ul>
   
