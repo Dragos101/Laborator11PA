@@ -8,27 +8,28 @@ import ro.info.uaic.service.PersonService;
 import java.util.List;
 
 @RestController
+@RequestMapping("/persons")
 public class PersonController {
     @Autowired
     PersonService personService;
 
-    @GetMapping("/persons")
+    @GetMapping("/")
     private List<PersonEnt> getAllPersons(){
         return personService.getAllPersons();
     }
 
-    @DeleteMapping("persons/{personID}")
+    @DeleteMapping("/{personID}")
     private void deletePlayer(@PathVariable("personID") String personID){
         personService.deletePerson(personID);
     }
 
-    @PostMapping("/persons")
+    @PostMapping("/")
     private String addPlayer(@RequestBody PersonEnt personEnt){
-        personService.ADD(personEnt);
+        personService.add(personEnt);
         return personEnt.getId();
     }
 
-    @PutMapping("/persons")
+    @PutMapping("/")
     private void update(@RequestBody PersonEnt person){
         personService.update(person);
     }

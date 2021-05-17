@@ -33,7 +33,7 @@ public class PersonService {
         return persons;
     }
 
-    public void ADD(PersonEnt personEnt)
+    public void add(PersonEnt personEnt)
     {
         try {
             PreparedStatement preparedStatement = Database.getConnection()
